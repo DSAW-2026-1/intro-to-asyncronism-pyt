@@ -54,7 +54,11 @@ function mostrarPokemon(pokemon, descripcion) {
     const resultado = document.getElementById("resultado");
 
     const types = pokemon.types.map(t => t.type.name).join(", ");
+    const mainType = pokemon.types[0].type.name;
+
     const abilities = pokemon.abilities.map(a => a.ability.name).join(", ");
+
+    resultado.className = mainType; // 🎨 color dinámico
 
     resultado.innerHTML = `
         <h2>${pokemon.name.toUpperCase()}</h2>
