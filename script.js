@@ -73,17 +73,32 @@ function mostrarPokemon(pokemon, descripcion) {
     const mainType = pokemon.types[0].type.name;
     const abilities = pokemon.abilities.map(a => a.ability.name).join(", ");
 
-    // 🎨 Aplicar color dinámico SIN romper estilos
+    // 🎨 color dinámico
     resultado.className = "";
     resultado.classList.add(mainType);
 
+    // 📊 stats
+    const statsHTML = pokemon.stats.map(stat => {
+        return `
+            <div class="stat">
+                <span>${stat.stat.name}</span>
+                <div class="bar">
+                    <div class="fill" style="width: ${stat.base_stat}%"></div>
+                </div>
+            </div>
+        `;
+    }).join("");
+
     resultado.innerHTML = `
         <h2>${pokemon.name.toUpperCase()}</h2>
-        <img src="${pokemon.sprites.other?.dream_world?.front_default || pokemon.sprites.front_default}">
+        <img class="poke-img" src="${pokemon.sprites.other?.dream_world?.front_default || pokemon.sprites.front_default}">
         <p><strong>Weight:</strong> ${pokemon.weight}</p>
         <p><strong>Type:</strong> ${types}</p>
         <p><strong>Abilities:</strong> ${abilities}</p>
         <p><strong>Description:</strong> ${descripcion}</p>
+
+        <h3>Stats</h3>
+        ${statsHTML}
     `;
 }
 
