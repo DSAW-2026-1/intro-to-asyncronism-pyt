@@ -19,9 +19,14 @@ async function buscarPokemon() {
 function mostrarPokemon(pokemon) {
     const resultado = document.getElementById("resultado");
 
+    const tipos = pokemon.types.map(t => t.type.name).join(", ");
+    const habilidades = pokemon.abilities.map(a => a.ability.name).join(", ");
+
     resultado.innerHTML = `
         <h2>${pokemon.name}</h2>
-        <p>Peso: ${pokemon.weight}</p>
+        <p><strong>Peso:</strong> ${pokemon.weight}</p>
+        <p><strong>Tipo:</strong> ${tipos}</p>
+        <p><strong>Habilidades:</strong> ${habilidades}</p>
         <img src="${pokemon.sprites.front_default}">
     `;
 }
